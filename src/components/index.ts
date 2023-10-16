@@ -1,13 +1,13 @@
-import SvgIcon from "./SvgIcon/index.vue"
-import type { App, Component } from "vue"
+import SvgIcon from "./SvgIcon/index.vue";
+import type { App, Component } from "vue";
 const components: {
-  [name: string]: Component
-} = { SvgIcon }
+  [name: string]: Component;
+} = { SvgIcon };
 
 export default {
   install(app: App) {
     Object.keys(components).forEach((key: string) => {
-      app.component(key, components[key])
-    })
+      app.component(key, components[key]);
+    });
   },
-}
+};
