@@ -1,6 +1,5 @@
 <template>
-  <h1>hello app</h1>
-  <router-view></router-view>
+  <div>login</div>
 </template>
 
 <script lang="ts"></script>
