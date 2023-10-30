@@ -1,8 +1,8 @@
 export const constantRoute = [
   {
-    path: "/home",
+    path: "/",
     component: () => import("@/views/home/index.vue"),
-    name: "layout",
+    name: "layout", // 命名路由，之后做权限
   },
   {
     path: "/login",
@@ -19,4 +19,4 @@ export const constantRoute = [
     redirect: "/404",
     name: "Any",
   },
-];
+]
