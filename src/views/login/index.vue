@@ -43,43 +43,43 @@
 </template>
 
 <script lang="ts" setup>
-import { reactive, ref } from "vue"
-import { User, Lock } from "@element-plus/icons-vue"
-import { useRouter } from "vue-router"
-import useUserStore from "@/store/module/user"
-import { ElNotification } from "element-plus"
-import { getTime } from "@/utils/time"
+import { reactive, ref } from "vue";
+import { User, Lock } from "@element-plus/icons-vue";
+import { useRouter } from "vue-router";
+import useUserStore from "@/store/module/user";
+import { ElNotification } from "element-plus";
+import { getTime } from "@/utils/time";
 
-const $router = useRouter()
-const userStore = useUserStore()
+const $router = useRouter();
+const userStore = useUserStore();
 
-const loginForm = reactive({ username: "admin", password: "111111" })
+const loginForm = reactive({ username: "admin", password: "111111" });
 
-const loginForms = ref()
-const loading = ref(false)
+const loginForms = ref();
+const loading = ref(false);
 const login = async () => {
   // 通知仓库发登陆请求
   // 请求成功 -> 展示数据的地方
   // 请求失败 -> 弹出登陆失败信息
-  await loginForms.value.validate()
-  loading.value = true
+  await loginForms.value.validate();
+  loading.value = true;
   try {
-    await userStore.userLogin(loginForm)
-    $router.push("/")
+    await userStore.userLogin(loginForm);
+    $router.push("/");
     ElNotification({
       type: "success",
       message: "欢迎回来",
       title: `HI,${getTime()}好`,
-    })
-    loading.value = false
+    });
+    loading.value = false;
   } catch (error) {
     ElNotification({
       type: "error",
       message: (error as Error).message,
-    })
-    loading.value = false
+    });
+    loading.value = false;
   }
-}
+};
 
 const validatorUserName = (rule: any, value: any, callback: any) => {
   //rule:即为校验规则对象
@@ -87,19 +87,19 @@ const validatorUserName = (rule: any, value: any, callback: any) => {
   //函数:如果符合条件callBack放行通过即为
   //如果不符合条件callBack方法,注入错误提示信息
   if (value.length >= 5) {
-    callback()
+    callback();
   } else {
-    callback(new Error("账号长度至少五位"))
+    callback(new Error("账号长度至少五位"));
   }
-}
+};
 
 const validatorPassword = (rule: any, value: any, callback: any) => {
   if (value.length >= 6) {
-    callback()
+    callback();
   } else {
-    callback(new Error("密码长度至少六位"))
+    callback(new Error("密码长度至少六位"));
   }
-}
+};
 
 const rules = {
   //规则对象属性:
@@ -116,7 +116,7 @@ const rules = {
     // { required: true, min: 6, max: 15, message: '密码长度至少6位', trigger: 'change' }
     { trigger: "change", validator: validatorPassword },
   ],
-}
+};
 </script>
 
 <style scoped lang="scss">

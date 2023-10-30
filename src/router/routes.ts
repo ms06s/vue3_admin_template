@@ -19,4 +19,4 @@ export const constantRoute = [
     redirect: "/404",
     name: "Any",
   },
-]
+];
